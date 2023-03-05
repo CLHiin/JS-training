@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>JS測試網頁5--監聽事件</title>
+    </head>
+
+    <body>
+        <div style="margin: auto;width: 800px;height: 600px;">
+            <canvas id="canvas" width= "800" height= "600;"></canvas>
+        </div>
+
+        <script>
+            var canvas = document.getElementById("canvas")
+            var context = canvas.getContext("2d")
+            context.fillStyle = "gray"
+            context.fillRect(0,0,canvas.width,canvas.height)
+
+            function WindowToCanvas(x,y){
+                var boxx = canvas.getBoundingClientRect()//得到物件的外圍
+                return {x: Math.round(x-boxx.left), y:Math.round(y-boxx.top)}
+                //好像是因為給的數值是浮點數,所以四捨五入了
+            }
+
+            // onmouse+動作 - 滑鼠事件
+            canvas.onmousedown=function(e){     //鼠標按下
+                //可用clientX得到鼠標座標
+                var loc = WindowToCanvas(e.clientX,e.clientY)
+                alert(loc.x +","+loc.y)//這樣就能知道鼠標在物件座標系下為多少
+            }
+            //document是整個螢幕 但也可以用物件放前面(可以侷限效果範圍)
+            document.onmousedup =function(e){}  //鼠標放開
+            canvas.onmouseout =function(e){}    //鼠標離開區域
+            canvas.onmousemove=function(e){     //鼠標移動
+                e.preventDefault()//用來避免默認的事件響應
+                //滑鼠的話在手機端比較有影響,電腦則是用鍵盤時較有影響
+                //例如手機的滑動和鍵盤的上下是遊覽器的移動,用了就不會再動了
+            }
+
+            //addEventListener 事件監聽
+            document.addEventListener("keydown",function(){})
+
+        </script>
+    </body>
+</html>

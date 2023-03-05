@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>JS測試網頁1--基礎語法1</title>
+        <style>*{background-color: gray;}</style>
+    </head>
+
+    <body> <!-- 基本資料型態 & 變數 -->
+        <h2><a href="js2.html">JS測試網頁2</a></h2>
+        <script src="Base& variable.js">
+            document.write("引入後,裡面的東西都沒有用了"); 
+        </script>
+
+        <script>//字串基礎延伸
+            var word_Base ="hello\" 安安";                   //用反斜線+特殊字符就可以用
+            document.write("<br/>"+word_Base);
+            word="Hello 安安"+123;                         //一樣可以用 + 來組合2個東西
+            document.write("<br/>"+word_Base);
+            document.write("<br/>"+word_Base.length);        //回傳字串的長度
+            document.write("<br/>"+word_Base.toUpperCase()); //字串全部變大寫
+            document.write("<br/>"+word_Base.toLowerCase()); //字串全部變小寫
+            //word="Hello 安安"+123;
+            //      012345 6 7 89
+            document.write("<br/>"+word_Base.charAt(0));     //回傳字串的第n個字元
+            document.write("<br/>"+word_Base.indexOf("H"));  //回傳字元在哪(沒有該字會傳-1,重複就傳最前面的)
+            document.write("<br/>"+word_Base.substring(0,5));//回傳0~4的字元,像(1,6)就是1~5的字元
+        </script>
+
+        <script>//數字基礎延伸
+            var number_Base1 =6,number_Base2=4;
+            document.write("<hr/>一旦輸出之中有字串加入,就會不進行變數運算"
+            +number_Base1+number_Base2                     );
+            document.write("<br/>"+8%3                     );//取餘數
+            document.write("<br/>"+Math.abs(-23)           );//取絕對值
+            document.write("<br/>"+Math.max(-23,54,40,2,34));//取最大值
+            document.write("<br/>"+Math.min(-23,54,40,2,34));//取最小值
+            document.write("<br/>"+Math.round(65.51)       );//四捨五入
+            document.write("<br/>"+Math.pow(5,2)           );//a的b次方
+            document.write("<br/>"+Math.sqrt(25)           );//開根號
+            document.write("<br/>"+Math.random()           );//回傳0~1隨機數
+            //利用以上來的進行合作,做出0~10的隨機數
+            document.write("<br/>"+Math.round(Math.random()*10));
+        </script>
+
+        <script>//只要宣言過的變數,後面也可以用(即使是之前套用的變數也行)
+            document.write("<br/>"+dog+age+rule);//這行就是之前套用過的js檔案中的變數
+            document.write("<br/>"+word_Base);
+            document.write("<br/>"+number_Base1);
+        </script>
+    </body>
+
+    <body> <!-- prompt 輸入基礎 -->
+        <script>//得到輸入值
+            var input_value = "11111";//就算之前先表示過,prompt也會覆蓋掉
+            input_value = prompt("這文字會在網頁上方出現,是給人輸入值的");
+            document.write("<br/>你輸入的值:"     +input_value);//沒寫就會顯示null
+            input_value = prompt("第2個給你輸入值的");
+            document.write("<br/>你第2個輸入的值:"+input_value);
+            //即使變數相同,沒有刷新,前面輸出的文字也不會變
+        </script>
+
+        <script>//字串轉換數字
+            var num1=prompt("請輸入數字1進行加法運算");
+            var num2=prompt("請輸入數字2進行加法運算");
+            document.write("<hr/>由於prompt檢測會自動當作是字元,所以無法正確進行運算<br/>");
+            document.write(num1+num2);
+            num1 = parseInt  (num1);//將字串轉換成 Int 整數
+            num2 = parseFloat(num2);//將字串轉換成Float浮點數
+            //注意,如果字串本身有非數字的話,轉換會出問題(顯示:NaN)
+            document.write("<br/>");
+            document.write(num1+num2);
+        </script>
+    </body>
+
+    <body><!-- 陣列 函式 如果判斷 -->
+        <script>// array 陣列
+            var array_Base = [80,"文字",true];//可以放 [數字] & [字串] & [布林值]
+            document.write("<br/>"+array_Base);
+            document.write("<br/>"+array_Base[0]);
+            document.write("<br/>"+array_Base.length);//輸出陣列長度
+            //https://www.oxxostudio.tw/articles/201908/js-array.html  陣列延伸
+        </script>
+        
+        <script>// function 函式
+            function hello ()    {document.write("<br/>hello你好阿");}
+            function hello2(name){document.write("<br/>嗨你好"+name);}
+            hello();//呼叫函式
+            hello2(dog,"輸入值也可以放數字或布林值");//如果多傳了,後面的會被忽視
+
+            function add(n1,n2){return n1 + n2 ;}
+            //如果函式碰到return,就會自動結束(可以利用此特性和一些判斷(if),來進行一些操作)
+            var n1_n2=add(3,5);
+            document.write("<br/>"+ n1_n2 );
+
+        </script>
+
+        <script>// if 如果判斷(這可是基礎)
+        var a = true ,b = false;
+        document.write("<br/>");
+        if      (a && b){document.write("a=true且b=true");}// && 代表 且
+        else if (a || b){document.write("a=true或b=true");}// || 代表 或
+        else if (!a)    {document.write("a=flase"       );}// !  代表 相反
+        </script>
+    </body>
+</html>

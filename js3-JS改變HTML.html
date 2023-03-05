@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>JS測試網頁3--用JS改變HTML</title>
+    </head>
+
+    <body><!-- event listener(事件監聽器) -->
+        <img id="img" height="100px" width="100px"
+        src="https://sites.google.com/site/2014ziguan1bchenluehua/_/rsrc/1418136587006/home/mi-qi-jia-zu/bu-lu-tuo-yu-gao-fei-de-jian-jie/%E4%B8%8B%E8%BC%89%20%283%29.jpg?height=320&width=320"/>
+        <button id="btn">按鈕1</button>
+        <button id="btn" onclick="handle_click(this)">按紐2</button>
+                    <!-- 按下時觸發handle_click(this) -->
+        <script>
+            function handle_click(self) {self.innerText = "按鈕被按下了";}
+            
+            //注意,雖然在css貌似沒這問題,但js的id如果重複,有效果的只有前面的
+            var btn = document.getElementById("btn");
+            var img = document.getElementById("img");
+            //  addEventListener( "事件"  , 要執行何種動作)
+            btn.addEventListener(  "click"  ,function(){
+                this.style.color = "red";
+                this.style.backgroundColor = "blue";} )
+            img.addEventListener("mouseover",function(){//滑鼠移入就啟動
+                this.src="https://i2.wp.com/justengtime.com/wp-content/uploads/2017/07/images.png"})
+            img.addEventListener("mouseout" ,function(){//滑鼠移開就啟動
+                this.src="https://sites.google.com/site/2014ziguan1bchenluehua/_/rsrc/1418136587006/home/mi-qi-jia-zu/bu-lu-tuo-yu-gao-fei-de-jian-jie/%E4%B8%8B%E8%BC%89%20%283%29.jpg?height=320&width=320";})
+            //事件總覽-->(https://www.fooish.com/javascript/dom/event.html)
+            
+        </script>
+    </body>
+
+    <body><!-- 製作一個簡易部落格-->
+        <h1>練習用簡易部落格</h1>
+        <p>標籤</p>
+        <input type="text" id="title"/>
+        <p>內容</p>
+        <textarea id="content" rows="8"></textarea>
+        <button id="btn2">發布</button>
+        <div id="list">
+            <div class="article">
+                <h2>標題</h2>
+                <p>內容</p><hr/>
+            </div>
+        </div>
+        <script>
+            var title = document.getElementById("title");
+            var content = document.getElementById("content");
+            var btn2 = document.getElementById("btn2");
+            var list = document.getElementById("list");
+
+            btn2.addEventListener("click",function(){
+            console.log(list.innerHTML);
+            list.innerHTML +=`
+            <div class="article">
+                <h2>${title.value}</h2>
+                <p>${content.value}</p><hr/>
+            </div>`;
+            })
+        </script>
+
+    </body>
+</html>
